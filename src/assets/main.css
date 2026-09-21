@@ -1,35 +1,46 @@
-@import './base.css';
+:root {
+  --rouge-base: #E60012;
+  --rouge-fonce: #B8000E;
+  --rouge-clair: #FF4757;
+  --noir: #1A1A1A;
+  --gris-fonce: #333333;
+  --gris-clair: #F5F5F5;
+  --blanc: #FFFFFF;
+  --jaune-accent: #FFD100;
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+  --ombre-legere: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --ombre-marquee: 0 4px 16px rgba(230, 0, 18, 0.2);
+  --rayon: 12px;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+* {
+  box-sizing: border-box;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--gris-clair);
+  color: var(--noir);
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
+h1, h2, h3 {
+  font-weight: 800;
+}
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+button {
+  cursor: pointer;
+  font-family: inherit;
+  border: none;
+  border-radius: var(--rayon);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

@@ -47,8 +47,51 @@ function deconnexion(){
 </template>
 
 <style scoped>
-nav { display: flex; gap: 1rem; padding: 1rem; background: #f4f4f4; }
-nav a { text-decoration: none; color: #333; }
-nav a.router-link-active { font-weight: bold; color: #42b883; }
-main { padding: 1rem; }
+header {
+  background: var(--rouge-base);
+  box-shadow: var(--ombre-legere);
+}
+
+nav {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+nav a, nav button {
+  color: var(--blanc);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: var(--rayon);
+  background: transparent;
+}
+
+nav a:hover, nav button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+nav a.router-link-active {
+  background: var(--blanc);
+  color: var(--rouge-base);
+}
+
+nav button {
+  background: var(--jaune-accent);
+  color: var(--noir);
+  font-weight: 700;
+}
+
+nav button:hover {
+  background: var(--jaune-accent);
+  opacity: 0.9;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
 </style>

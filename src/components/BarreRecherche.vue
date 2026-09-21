@@ -12,7 +12,7 @@ defineEmits(['update:modelValue'])
   <input
   type="text"
   :value="modelValue"
-  @input="$emit('update:modelValue, $event.target.value')"
+  @input="$emit('update:modelValue', $event.target.value)"
   placeholder="Rechercher un article..."
   />
 </template>

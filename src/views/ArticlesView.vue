@@ -16,13 +16,23 @@ const props = defineProps({
 function ajouterAuPanier(article){
   props.panier.push(article)
 }
-
 const recherche = ref('')
 
-const articlesFiltre = computed(() =>{
+const categorieChoisie = ref('')
+
+const categories = computed(() => {
+  const all = props.articles.map(a => a.categorie)
+  return [...new Set(all)]
+})
+
+const articlesFiltre = computed(() => {
   const texte = recherche.value.toLowerCase().trim()
-  if (!texte) return props.articles
-  return props.articles.filter(article => article.titre.toLowerCase().includes(texte))
+
+  return props.articles.filter(article => {
+    const correspondTexte = !texte || article.titre.toLowerCase().includes(texte)
+    const correspondCategorie = !categorieChoisie.value || article.categorie === categorieChoisie.value
+    return correspondTexte && correspondCategorie
+  })
 })
 
 const pageActuelle = ref(1)
@@ -47,7 +57,16 @@ function pageApres(){
 <template>
   <h1>Articles</h1>
 
-  <BarreRecherche v-model="recherche" />
+  <div class="filtres">
+    <BarreRecherche v-model="recherche" />
+
+    <select v-model="categorieChoisie">
+      <option value="">Toutes les catégories</option>
+      <option v-for="cat in categories" :key="cat" :value="cat">
+        {{ cat }}
+      </option>
+    </select>
+  </div>
 
   <ListeArticles
       :articles="articlesPag"
@@ -60,3 +79,23 @@ function pageApres(){
     <button @click="pageApres" :disabled="pageActuelle === totalP">Suivant</button>
   </div>
 </template>
+
+<style scoped>
+.filtres {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.pagination {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+</style>
